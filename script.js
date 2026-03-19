@@ -1016,9 +1016,9 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
               </main>
 
               <footer className="w-full px-8 py-6 mt-auto">
-                <div className="flex justify-between items-center text-[11px] font-black text-slate-400 uppercase tracking-widest border-t border-slate-200 pt-6">
+                <div className="flex justify-between items-center text-[10px] font-black text-slate-400 uppercase tracking-widest border-t border-slate-200 pt-6">
                   <div>©2026(copyright): {AUTHOR_NAME} • {AUTHOR_PHONE}</div>
-                  <div className="text-right">AI CÓ THỂ MẮC SAI SÓT. THẦY CÔ VUI LÒNG KIỂM TRA LẠI</div>
+                  <div className="text-right">AI CÓ THỂ MẮC SAI SÓT. THẦY/CÔ VUI LÒNG KIỂM TRA LẠI.</div>
                 </div>
               </footer>
 
