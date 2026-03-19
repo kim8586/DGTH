@@ -1017,7 +1017,7 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
 
               <footer className="w-full px-8 py-6 mt-auto">
                 <div className="flex justify-between items-center text-[11px] font-black text-slate-400 uppercase tracking-widest border-t border-slate-200 pt-6">
-                  <div>© (copyright): {AUTHOR_NAME} • {AUTHOR_PHONE}</div>
+                  <div>©2026(copyright): {AUTHOR_NAME} • {AUTHOR_PHONE}</div>
                   <div className="text-right italic">SỬ DỤNG AI ĐỂ TỐI ƯU HÓA ĐÁNH GIÁ GIÁO DỤC</div>
                 </div>
               </footer>
