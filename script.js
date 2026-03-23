@@ -1181,7 +1181,7 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
     </div>
 
     <div className="text-right italic normal-case">
-      * Dữ liệu có thể có sai sót. Thầy/Cô vui lòng kiểm tra lại.
+      * Dữ liệu AI có thể có sai sót. Thầy/Cô vui lòng kiểm tra lại.
     </div>
 
   </div>
