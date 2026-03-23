@@ -1170,7 +1170,7 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
                       </div>
                     </div>
                   </div>
-                ) : <div className="py-32 text-center bg-white rounded-3xl border-4 border-dashed border-slate-300 font-black text-slate-300 uppercase tracking-[0.2em] text-xl">Vui lòng chọn đủ dữ liệu (năm học, lớp học, tháng, môn học/nl?pc</div>}
+                ) : <div className="py-32 text-center bg-white rounded-3xl border-4 border-dashed border-slate-300 font-black text-slate-300 uppercase tracking-[0.2em] text-xl">Vui lòng chọn đủ dữ liệu (năm học, lớp học, tháng, môn học/nl/pc)</div>}
               </main>
 
               <footer className="fixed bottom-0 left-0 w-full px-8 py-1 bg-white border-t border-slate-200 z-50">
