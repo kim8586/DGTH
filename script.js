@@ -913,7 +913,9 @@ style={{
               <header className="bg-indigo-900 text-white p-4 md:p-6 shadow-xl border-b-4 border-indigo-700 w-full">
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 px-4">
                   <div className="flex items-center gap-4">
-                    <div className="p-2 bg-white/20 rounded-xl">🎓</div>
+                     <div className="p-2 bg-white/20 rounded-xl">
+ <img src="./logo.png" class="w-9 h-9" />
+</div>
                     <div className="flex flex-col">
                       <h1 className="text-xl md:text-2xl font-black uppercase leading-none tracking-tight">ĐÁNH GIÁ THƯỜNG XUYÊN</h1>
                       <span className="text-indigo-300 text-[11px] font-bold uppercase mt-1 italic tracking-wider">CHUYỂN ĐỔI SỐ TRONG CÔNG TÁC ĐÁNH GIÁ Ở TIỂU HỌC</span>
