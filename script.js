@@ -961,7 +961,7 @@ onClick={() => setShowUserMenu(!showUserMenu)}
 style={{
   background:"white",
   color:"#333",
-  padding:"5px 8px",
+  padding:"6px 8px",
   borderRadius:"6px",
   fontSize:"13px",
   fontWeight:"bold",
