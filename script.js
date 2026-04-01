@@ -950,7 +950,7 @@ style={{
                 <div style={{
   position:"absolute",
   top:"10px",
-  left:"40px"
+  left:"42px"
 }}
 
 onMouseLeave={()=>setShowUserMenu(false)}
