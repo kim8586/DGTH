@@ -1176,7 +1176,7 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
               </main>
 
               <footer className="fixed bottom-0 left-0 w-full px-8 py-1 bg-white border-t border-slate-200 z-50">
-  <div className="flex justify-between items-center text-[11px] text-slate-400">
+  <div className="flex justify-between items-center text-[11px] text-slate-500">
     
     <div>
       © {new Date().getFullYear()} • Designed & Developed by {AUTHOR_NAME} • {AUTHOR_PHONE}
