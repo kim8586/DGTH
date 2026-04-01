@@ -977,7 +977,7 @@ style={{
 <div style={{
   position:"absolute",
   right:"0",
-  top:"60px",
+  top:"30px",
   background:"white",
   borderRadius:"6px",
   boxShadow:"0 2px 10px rgba(0,0,0,0.2)",
