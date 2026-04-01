@@ -961,7 +961,7 @@ onClick={() => setShowUserMenu(!showUserMenu)}
 style={{
   background:"white",
   color:"#333",
-  padding:"5px 7px",
+  padding:"5px 8px",
   borderRadius:"6px",
   fontSize:"13px",
   fontWeight:"bold",
@@ -977,7 +977,7 @@ style={{
 <div style={{
   position:"absolute",
   right:"0",
-  top:"40px",
+  top:"28px",
   background:"white",
   borderRadius:"6px",
   boxShadow:"0 2px 10px rgba(0,0,0,0.2)",
