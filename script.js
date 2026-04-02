@@ -1024,7 +1024,7 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
 </div>
               </header>
 
-              <div className="w-full px-4 md:px-8 py-6 flex flex-wrap gap-4 items-stretch">
+              <div className="w-full px-4 md:px-8 py-3 flex flex-wrap gap-10 items-stretch">
                 <SectionBox label="📅 Năm học" items={years} selectedId={selectedYearId} onSelect={setSelectedYearId} type="year" />
                 <SectionBox label="🏫 Lớp học" items={classes} selectedId={selectedClassId} onSelect={setSelectedClassId} type="class" />
                 <SectionBox label="📆 Tháng" items={months} selectedId={selectedMonthId} onSelect={setSelectedMonthId} type="month" />
@@ -1033,7 +1033,7 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
                 ) : systemMode === 'vnedu' ? (
                   <SectionBox label={viewMode === 'quality' ? '⭐ Chọn Phẩm chất' : (viewMode === 'competency' ? '🧠 Chọn NL Chung' : '👤 Chọn NL Đặc thù')} items={viewMode === 'quality' ? QUALITY_CRITERIA : (viewMode === 'competency' ? GENERAL_COMPETENCIES : SPECIFIC_COMPETENCIES)} selectedId={selectedCriteriaId} onSelect={setSelectedCriteriaId} type="system_comp" />
                 ) : (
-                  <div className="bg-indigo-50 p-4 rounded-xl border-2 border-indigo-200 shadow-sm flex items-center justify-center font-black text-indigo-700 text-[10px] uppercase gap-2 flex-1 min-w-[200px]">
+                  <div className="bg-indigo-50 p-2 rounded-xl border-2 border-indigo-200 shadow-sm flex items-center justify-center font-black text-indigo-700 text-[10px] uppercase gap-2 flex-1 min-w-[140px]">
                     {viewMode === 'specific' ? '⭐' : (viewMode === 'competency' ? '🧠' : '👤')}
                     {viewMode === 'competency' ? 'NL CHUNG (SMAS)' : (viewMode === 'quality' ? 'PHẨM CHẤT (SMAS)' : 'NL ĐẶC THÙ (SMAS)')}
                   </div>
