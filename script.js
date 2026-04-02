@@ -910,7 +910,7 @@ style={{
             <div className="min-h-screen bg-[#F8FAFC] text-slate-900 pb-12 font-sans text-left flex flex-col w-full">
               {toast && <Toast message={toast.message} type={toast.type} icon={toast.icon} />}
               
-              <header className="bg-indigo-900 text-white p-4 md:p-6 shadow-xl border-b-4 border-indigo-700 w-full">
+              <header className="bg-indigo-900 text-white p-2 md:p-3 shadow-xl border-b-2 border-indigo-700 w-full">
                 <div className="w-full flex flex-col lg:flex-row justify-between items-center gap-6 px-4">
                   <div className="flex items-center gap-4">
                      <div className="p-2 bg-white/20 rounded-xl">
@@ -1043,8 +1043,8 @@ style={{padding:"8px 12px",cursor:"pointer",color:"red"}}
               <main className="w-full px-4 md:px-8 flex-1">
                 {selectedYearId && selectedClassId && selectedMonthId && (viewMode === 'subject' ? selectedSubId : (systemMode === 'vnedu' ? selectedCriteriaId : true)) ? (
                   <div className="space-y-6 w-full">
-                    <div className="bg-white rounded-2xl p-6 border-2 border-slate-300 shadow-sm flex flex-col gap-4 w-full">
-                      <div className="flex flex-col xl:flex-row gap-6 items-end">
+                    <div className="bg-white rounded-2xl p-2 border-2 border-slate-300 shadow-sm flex flex-col gap-3 w-full">
+                      <div className="flex flex-col xl:flex-row gap-3 items-end">
                         <div className="flex-1 w-full text-left">
                           <label className="text-[10px] font-black text-slate-500 uppercase mb-2 block tracking-widest">Hướng dẫn AI (AI nhận xét theo hướng dẫn)</label>
                           <div className="relative">
