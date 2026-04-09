@@ -592,7 +592,7 @@ QUY TẮC THEO MỨC:
   + Đưa ra hướng cải thiện rõ ràng, dễ thực hiện.
 
 PHONG CÁCH:
-- Ưu tiên câu ngắn, rõ ý (1–2 câu).
+- Ưu tiên câu ngắn, rõ ý.
 - Tránh lặp từ giữa các học sinh.
 - Giống nhận xét viết tay của giáo viên.
 
@@ -632,7 +632,7 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
 
               
               try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite-preview:generateContent?key=${apiKey}`, {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ 
