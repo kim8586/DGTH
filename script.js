@@ -533,7 +533,7 @@ const batch = db.batch();
             setIsGenerating(true);
             showToast(`Đang tạo nhận xét cho ${allTargets.length} học sinh...`, 'info', '⏳', 2000);
             
-            const BATCH_SIZE = 20;
+            const BATCH_SIZE = allTargets.length;
             let successCount = 0;
             for (let i = 0; i < allTargets.length; i += BATCH_SIZE) {
               const batch = allTargets.slice(i, i + BATCH_SIZE);
@@ -555,27 +555,71 @@ const batch = db.batch();
                   const list = viewMode === 'quality' ? QUALITY_CRITERIA : (viewMode === 'competency' ? GENERAL_COMPETENCIES : SPECIFIC_COMPETENCIES);
                   const details = list.map(c => {
                     const lv = draft[`level_${c.id}`] !== undefined ? draft[`level_${c.id}`] : (d[`level_${c.id}`] || "");
-                    return lv ? `${c.name}: ${lv}` : null;
+                    return lv ? `${c.name} đạt mức ${lv}` : null;
                   }).filter(Boolean).join('; ');
                   info = `Đánh giá tổng hợp: ${details}`;
                 }
                 return { studentId: stu.id, studentName: stu.name, context: info, note: draft.note || d.note || "" };
               });
               
-              const systemPrompt = `Bạn là GV Tiểu học Việt Nam. Hãy viết nhận xét học sinh theo định dạng JSON.
-      QUY TẮC CHUNG:
-      - Ngôn ngữ: Tiếng Việt, gần gũi, khích lệ. 
-      - Cấu trúc: Bắt đầu bằng 'Em...'. 
-      - Bắt buộc câu nhận xét của mỗi học sinh đều khác nhau.
-      - Tuyệt đối không nêu lại tên của học sinh.
-      - KHÔNG dùng từ 'Hoàn thành tốt' cho học sinh ở mức Đạt (Đ) hoặc Hoàn thành (H).
-      - Tuyệt đối không dùng cụm từ Thầy/cô.
-      - KHÔNG lặp lại tên môn học hoặc tên năng lực.
-      - Dựa vào 'data' để viết: 
-        Mức T (Tốt) thì khen ngợi. 
-        Mức Đ/H (Đạt) thì khen ngợi và hướng phát huy. 
-        Mức C (Chưa đạt) thì khen nhẹ, nêu hạn chế cụ thể, nêu biện pháp khắc phục rõ ràng.
-       Trả về định dạng JSON: {"studentId": "nội dung nhận xét"}`;
+              const systemPrompt = `
+Bạn là giáo viên Tiểu học tại Việt Nam, có kinh nghiệm nhận xét học sinh theo Thông tư 27.
+
+Hãy viết nhận xét học sinh theo định dạng JSON.
+
+QUY TẮC CHUNG:
+- Ngôn ngữ: Tiếng Việt tự nhiên, gần gũi, mang tính động viên, giống lời giáo viên thật.
+- Mỗi học sinh phải có cách diễn đạt khác nhau, tránh lặp cấu trúc câu.
+- Bắt đầu bằng "Em".
+- Tuyệt đối không dùng từ "cô", "thầy" trong câu nhận xét.
+- Không nhắc lại tên học sinh.
+- Không lặp lại tên môn học hoặc tên tiêu chí trong câu.
+
+NỘI DUNG NHẬN XÉT:
+- Luôn khen điểm mạnh cụ thể (không khen chung chung).
+- Nhận xét phải dựa sát vào dữ liệu (mức đánh giá).
+- Viết tự nhiên như lời nói, không máy móc.
+
+QUY TẮC THEO MỨC:
+- Mức T (Tốt):
+  + Khen rõ điểm nổi bật (ví dụ: tiếp thu nhanh, làm bài cẩn thận, tích cực phát biểu).
+- Mức Đ / H (Đạt / Hoàn thành):
+  + Khen điểm đã làm được.
+  + Đưa ra hướng phát huy
+- Mức C (Chưa đạt):
+  + Khen nhẹ 1 điểm (ví dụ: có cố gắng).
+  + Nêu hạn chế cụ thể (không nói chung chung).
+  + Đưa ra hướng cải thiện rõ ràng, dễ thực hiện.
+
+PHONG CÁCH:
+- Ưu tiên câu ngắn, rõ ý (1–2 câu).
+- Tránh lặp từ giữa các học sinh.
+- Giống nhận xét viết tay của giáo viên.
+
+QUY ĐỊNH CHỐNG TRÙNG LẶP (BẮT BUỘC):
+- Mỗi nhận xét phải KHÁC NHAU hoàn toàn về cách diễn đạt.
+- Không được sử dụng lại cùng một cấu trúc câu cho nhiều học sinh.
+- Phải thay đổi:
+  + cách mở đầu sau từ "Em"
+  + từ ngữ khen (không lặp lại "chăm chỉ", "cố gắng" nhiều lần)
+  + cách góp ý
+- Nếu nhiều học sinh có cùng mức đánh giá, vẫn phải viết khác nhau.
+- Sau khi viết xong toàn bộ, phải tự kiểm tra:
+  + Nếu có 2 câu giống hoặc gần giống nhau → viết lại cho khác.
+- Không được dùng lại các mẫu như:
+  "Em chăm chỉ và có cố gắng"
+  "Em học tốt và cần phát huy"
+
+ĐỊNH DẠNG TRẢ VỀ:
+Trả về JSON dạng:
+{
+  "studentId1": "nhận xét...",
+  "studentId2": "nhận xét..."
+}
+
+Không giải thích thêm.
+`;
+
               const userInstruction = `Ghi chú riêng của giáo viên:
 ${aiPrompt}
 
@@ -588,7 +632,7 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
 
               
               try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`, {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${apiKey}`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ 
@@ -606,11 +650,22 @@ Hãy viết nhận xét cho từng học sinh theo đúng ID và trả về đú
                 const jsonText = result.candidates?.[0]?.content?.parts?.[0]?.text;
                 if (jsonText) {
                   const results = JSON.parse(jsonText);
-                  setDraftData(prev => {
-                    const newDraft = { ...prev };
-                    Object.keys(results).forEach(sId => { newDraft[sId] = { ...(newDraft[sId] || {}), comment: results[sId] }; });
-                    return newDraft;
-                  });
+                  const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
+for (const sId of Object.keys(results)) {
+  const comment = results[sId];
+
+  setDraftData(prev => ({
+    ...prev,
+    [sId]: {
+      ...(prev[sId] || {}),
+      comment: comment
+    }
+  }));
+
+  await delay(500); // 👈 chỉnh tốc độ ở đây
+}
+
                   successCount += Object.keys(results).length;
                 }
               } catch (e) { 
